@@ -43,21 +43,7 @@ type ListContactReq struct {
 // ListContactResp Get Contact list response entity
 type ListContactResp struct {
 	PaginateResp `json:",inline"`
-	List         []ContactItem `json:"data"`
-}
-
-// ContactItem Contact info entity
-type ContactItem struct {
-	Status       string `json:"status"`
-	EmailAddress string `json:"emailAddress"`
-	Language     string `json:"language"`
-	FirstName    string `json:"firstName"`
-	LastName     string `json:"lastName"`
-	PhoneNumber  string `json:"phoneNumber"`
-	Birthday     string `json:"birthday"`
-	Company      string `json:"company"`
-	VIPLevel     int    `json:"vipLevel"`
-	Amount       string `json:"amount"`
+	List         map[string]string `json:"data"`
 }
 
 // SaveContactReq Save contact request entity
