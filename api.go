@@ -12,7 +12,7 @@ import (
 )
 
 const (
-	baseUrl        = "https://api.sendflare.io"
+	baseUrl        = "https://api.sendflare.com"
 	requestTimeout = time.Second * 10
 )
 

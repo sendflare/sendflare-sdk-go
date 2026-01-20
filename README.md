@@ -276,7 +276,7 @@ fmt.Printf("Success: %v\n", resp.Success)
 ## Configuration
 
 The SDK uses the following defaults:
-- **Base URL**: `https://api.sendflare.io`
+- **Base URL**: `https://api.sendflare.com`
 - **Request Timeout**: 10 seconds
 
 ## Building from Source
@@ -295,7 +295,7 @@ go build
 
 ## Documentation
 
-For more information, visit: [https://docs.sendflare.io](https://docs.sendflare.io)
+For more information, visit: [https://docs.sendflare.com](https://docs.sendflare.com)
 
 ## LICENSE
 
