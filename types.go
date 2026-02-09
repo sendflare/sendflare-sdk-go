@@ -42,8 +42,11 @@ type ListContactReq struct {
 
 // ListContactResp Get Contact list response entity
 type ListContactResp struct {
-	PaginateResp `json:",inline"`
-	List         map[string]string `json:"data"`
+	CommonResponse `json:",inline"`
+	PaginateResp   `json:",inline"`
+	Data           struct {
+		List []map[string]string `json:"list"`
+	} `json:"data"`
 }
 
 // SaveContactReq Save contact request entity

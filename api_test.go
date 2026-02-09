@@ -2,9 +2,14 @@ package sendflare_sdk_go
 
 import "testing"
 
+var (
+	token = "your token"
+	appId = "your-app-id"
+)
+
 func TestNewSendflare(t *testing.T) {
 	t.Run("NewSendflare", func(t *testing.T) {
-		t.Log(NewSendflare("this-is-my-token"))
+		t.Log(NewSendflare(token))
 	})
 }
 
@@ -12,33 +17,33 @@ func TestSend(t *testing.T) {
 	t.Run("Send", func(t *testing.T) {
 		req := SendEmailReq{
 			From:    "test@example.com",
-			To:      "to@example.com",
-			Subject: "test",
+			To:      "receive@example.com",
+			Subject: "test email available",
 			Body:    "test email",
 		}
 		t.Log(req)
-		t.Log(NewSendflare("this-is-my-token").SendEmail(req))
+		t.Log(NewSendflare(token).SendEmail(req))
 	})
 }
 
 func TestGetContactList(t *testing.T) {
 	t.Run("GetContactList", func(t *testing.T) {
 		req := ListContactReq{
-			AppId: "test",
+			AppId: appId,
 			PaginateReq: PaginateReq{
 				PageSize: 10,
 				Page:     1,
 			},
 		}
 		t.Log(req)
-		t.Log(NewSendflare("this-is-my-token").GetContactList(req))
+		t.Log(NewSendflare(token).GetContactList(req))
 	})
 }
 
 func TestSaveContact(t *testing.T) {
 	t.Run("SaveContact", func(t *testing.T) {
 		req := SaveContactReq{
-			AppId:        "test",
+			AppId:        appId,
 			EmailAddress: "test@example.com",
 			Data: map[string]string{
 				"firstName": "John",
@@ -46,17 +51,17 @@ func TestSaveContact(t *testing.T) {
 			},
 		}
 		t.Log(req)
-		t.Log(NewSendflare("this-is-my-token").SaveContact(req))
+		t.Log(NewSendflare(token).SaveContact(req))
 	})
 }
 
 func TestDeleteContact(t *testing.T) {
 	t.Run("DeleteContact", func(t *testing.T) {
 		req := DeleteContactReq{
-			AppId:        "test",
+			AppId:        appId,
 			EmailAddress: "test@example.com",
 		}
 		t.Log(req)
-		t.Log(NewSendflare("this-is-my-token").DeleteContact(req))
+		t.Log(NewSendflare(token).DeleteContact(req))
 	})
 }
