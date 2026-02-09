@@ -43,9 +43,9 @@ type ListContactReq struct {
 // ListContactResp Get Contact list response entity
 type ListContactResp struct {
 	CommonResponse `json:",inline"`
-	PaginateResp   `json:",inline"`
 	Data           struct {
-		List []map[string]string `json:"list"`
+		PaginateResp `json:",inline"`
+		List         []map[string]string `json:"list"`
 	} `json:"data"`
 }
 

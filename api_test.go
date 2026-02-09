@@ -3,8 +3,8 @@ package sendflare_sdk_go
 import "testing"
 
 var (
-	token = "your token"
-	appId = "your-app-id"
+	token = "live_NTQzOThjYzEtMzFhZS00ZWUyLWExMDYtZmNkMTRiZmNiNzQ1QlBQSVdJT0JCUUZZQldJQklETEhQUUZBTktESUVRRlVNUUtLV0dFTldJVUNXVkdLWVY"
+	appId = "f5e3886a19674edc9a6b3abf41900ead"
 )
 
 func TestNewSendflare(t *testing.T) {
