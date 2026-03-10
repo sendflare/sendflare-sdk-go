@@ -29,6 +29,8 @@ type SendEmailReq struct {
 	To      string `json:"to"`
 	Subject string `json:"subject"`
 	Body    string `json:"body"`
+	CC 		[]string `json:"cc"`
+	BCC 	[]string `json:"bcc"`
 }
 
 // SendEmailResp Send Email response entity

@@ -20,6 +20,8 @@ func TestSend(t *testing.T) {
 			To:      "receive@example.com",
 			Subject: "test email available",
 			Body:    "test email",
+			CC:      []string{"cc@example.com"},
+			BCC:     []string{"bcc@example.com"},
 		}
 		t.Log(req)
 		t.Log(NewSendflare(token).SendEmail(req))

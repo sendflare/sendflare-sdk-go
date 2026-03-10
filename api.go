@@ -16,7 +16,7 @@ const (
 	requestTimeout = time.Second * 10
 )
 
-type sendKit struct {
+type sendflare struct {
 	token string
 }
 
@@ -32,14 +32,14 @@ type SendflareImpl interface {
 	makeHeaders() map[string]string
 }
 
-var _ SendflareImpl = &sendKit{}
+var _ SendflareImpl = &sendflare{}
 
 // NewSendflare New sendflare client instance
 func NewSendflare(token string) SendflareImpl {
-	return &sendKit{token: token}
+	return &sendflare{token: token}
 }
 
-func (s *sendKit) SendEmail(req SendEmailReq) (resp SendEmailResp, err error) {
+func (s *sendflare) SendEmail(req SendEmailReq) (resp SendEmailResp, err error) {
 	path := "/v1/send"
 
 	payload, err := json.Marshal(&req)
@@ -70,7 +70,7 @@ func (s *sendKit) SendEmail(req SendEmailReq) (resp SendEmailResp, err error) {
 	return
 }
 
-func (s *sendKit) GetContactList(req ListContactReq) (resp ListContactResp, err error) {
+func (s *sendflare) GetContactList(req ListContactReq) (resp ListContactResp, err error) {
 	path := "/v1/contact"
 
 	params := url.Values{}
@@ -102,7 +102,7 @@ func (s *sendKit) GetContactList(req ListContactReq) (resp ListContactResp, err 
 	return
 }
 
-func (s *sendKit) SaveContact(req SaveContactReq) (resp SaveContactResp, err error) {
+func (s *sendflare) SaveContact(req SaveContactReq) (resp SaveContactResp, err error) {
 	path := "/v1/contact"
 
 	payload, err := json.Marshal(&req)
@@ -133,7 +133,7 @@ func (s *sendKit) SaveContact(req SaveContactReq) (resp SaveContactResp, err err
 	return
 }
 
-func (s *sendKit) DeleteContact(req DeleteContactReq) (resp DeleteContactResp, err error) {
+func (s *sendflare) DeleteContact(req DeleteContactReq) (resp DeleteContactResp, err error) {
 	path := "/v1/contact"
 
 	params := url.Values{}
@@ -163,7 +163,7 @@ func (s *sendKit) DeleteContact(req DeleteContactReq) (resp DeleteContactResp, e
 	return
 }
 
-func (s *sendKit) makeHeaders() map[string]string {
+func (s *sendflare) makeHeaders() map[string]string {
 	return map[string]string{
 		"Authorization": "Bearer " + s.token,
 		"Content-Type":  "application/json",
