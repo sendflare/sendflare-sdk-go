@@ -23,6 +23,8 @@ type sendflare struct {
 type SendflareImpl interface {
 	// SendEmail Send an email
 	SendEmail(req SendEmailReq) (SendEmailResp, error)
+	// BatchSendEmail Send a batch of emails
+	BatchSendEmail(req BatchSendEmailReq) (BatchSendEmailResp, error)
 	// GetContactList Get contact list
 	GetContactList(req ListContactReq) (ListContactResp, error)
 	// SaveContact Create or update contact
@@ -41,6 +43,37 @@ func NewSendflare(token string) SendflareImpl {
 
 func (s *sendflare) SendEmail(req SendEmailReq) (resp SendEmailResp, err error) {
 	path := "/v1/send"
+
+	payload, err := json.Marshal(&req)
+	if err != nil {
+		return
+	}
+	rsq, err := http.NewRequest("POST", fmt.Sprintf("%s%s", baseUrl, path), bytes.NewBuffer(payload))
+	if err != nil {
+		return
+	}
+	headers := s.makeHeaders()
+	for k, v := range headers {
+		rsq.Header.Set(k, v)
+	}
+	client := &http.Client{Timeout: requestTimeout}
+	rsp, err := client.Do(rsq)
+	if err != nil {
+		return
+	}
+	defer func() {
+		_ = rsp.Body.Close()
+	}()
+	body, err := io.ReadAll(rsp.Body)
+	if err != nil {
+		return
+	}
+	err = json.Unmarshal(body, &resp)
+	return
+}
+
+func (s *sendflare) BatchSendEmail(req BatchSendEmailReq) (resp BatchSendEmailResp, err error) {
+	path := "/v1/batchSend"
 
 	payload, err := json.Marshal(&req)
 	if err != nil {

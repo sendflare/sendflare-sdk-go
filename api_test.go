@@ -28,6 +28,19 @@ func TestSend(t *testing.T) {
 	})
 }
 
+func TestBatchSendEmail(t *testing.T) {
+	t.Run("BatchSendEmail", func(t *testing.T) {
+		req := BatchSendEmailReq{
+			From:    "test@example.com",
+			To:      []string{"test@example.com"},
+			Subject: "test email available",
+			Body:    "test email",
+		}
+		t.Log(req)
+		t.Log(NewSendflare(token).BatchSendEmail(req))
+	})
+}
+
 func TestGetContactList(t *testing.T) {
 	t.Run("GetContactList", func(t *testing.T) {
 		req := ListContactReq{

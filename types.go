@@ -31,10 +31,25 @@ type SendEmailReq struct {
 	Body    string `json:"body"`
 	CC 		[]string `json:"cc"`
 	BCC 	[]string `json:"bcc"`
+	ReplyTo []string `json:"replyTo"`
 }
 
 // SendEmailResp Send Email response entity
 type SendEmailResp CommonResponse
+
+// BatchSendEmailReq Send Email request entity
+type BatchSendEmailReq struct {
+	From    string `json:"from"`
+	To      []string `json:"to"`
+	Subject string `json:"subject"`
+	Body    string `json:"body"`
+	CC 		[]string `json:"cc"`
+	BCC 	[]string `json:"bcc"`
+	ReplyTo []string `json:"replyTo"`
+}
+
+// BatchSendEmailResp Send Email response entity
+type BatchSendEmailResp CommonResponse
 
 // ListContactReq Get Contact list request entity
 type ListContactReq struct {
